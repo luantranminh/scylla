@@ -6,6 +6,7 @@
   <body>
     <h1>Sign Up Form</h1>
     <form action="/signup" method="post">
+        {{ .xsrfdata }}
       <label for="email">Email:</label>
       <input type="email" id="email" name="email" required><br>
 

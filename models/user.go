@@ -15,6 +15,10 @@ func init() {
 	orm.RegisterModel(new(User))
 }
 
+func (u *User) TableName() string {
+	return "users"
+}
+
 // AddUser insert a new User into database and returns
 // last inserted Id on success.
 func AddUser(m *User) (id int64, err error) {
@@ -48,7 +52,7 @@ func GetUserByEmail(email string) (v *User, err error) {
 	o := orm.NewOrm()
 	var user User
 
-	if err = o.QueryTable("user").Filter("email", email).One(&user); err == nil {
+	if err = o.QueryTable(user.TableName()).Filter("email", email).One(&user); err == nil {
 		return &user, nil
 	}
 
