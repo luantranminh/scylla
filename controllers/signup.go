@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"fmt"
+	"html/template"
 	"scylla/forms"
 
 	beego "github.com/beego/beego/v2/server/web"
@@ -35,6 +36,8 @@ func (c *SignupController) View() {
 	flash := beego.ReadFromRequest(&c.Controller)
 
 	fmt.Println(flash)
+
+	c.Data["xsrfdata"] = template.HTML(c.XSRFFormHTML())
 
 	c.TplName = "signup.tpl"
 	c.Data["Title"] = "Create new account"
