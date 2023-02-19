@@ -11,11 +11,11 @@ import (
 )
 
 func init() {
-	db, _ := beego.AppConfig.String("db_database")
-	user, _ := beego.AppConfig.String("db_username")
-	pass, _ := beego.AppConfig.String("db_password")
-	host, _ := beego.AppConfig.String("db_host")
-	port, _ := beego.AppConfig.String("db_port")
+	db, _ := beego.AppConfig.String("dbdatabase")
+	user, _ := beego.AppConfig.String("dbusername")
+	pass, _ := beego.AppConfig.String("dbpassword")
+	host, _ := beego.AppConfig.String("dbhost")
+	port, _ := beego.AppConfig.String("dbport")
 
 	dns := fmt.Sprintf("postgresql://%s:%s@%s:%s/%s?sslmode=disable", user, pass, host, port, db)
 
