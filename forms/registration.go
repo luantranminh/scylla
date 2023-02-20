@@ -38,7 +38,7 @@ func (r *RegistrationForm) Save() (*models.User, error) {
 		}
 	}
 
-	hashed, _ := bcrypt.GenerateFromPassword([]byte(r.Password), 8)
+	hashed, _ := bcrypt.GenerateFromPassword([]byte(r.Password), bcrypt.DefaultCost)
 
 	user := &models.User{
 		Email:    r.Email,
