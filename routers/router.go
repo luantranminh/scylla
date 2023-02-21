@@ -20,6 +20,5 @@ func init() {
 			beego.NSRouter("/upload", &controllers.HomeController{}, "post:UploadFile"),
 		)
 
-	// register namespace
 	beego.AddNamespace(ns)
 }
