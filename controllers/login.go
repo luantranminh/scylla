@@ -32,7 +32,8 @@ func (c *LoginController) Login() {
 	session.Set(c.Ctx.Request.Context(), "UserID", user.Id)
 	flash.Success("Wellcome to the town")
 	flash.Store(&c.Controller)
-	c.Redirect("/signup", 302) // TODO: change to home page
+
+	c.Redirect("/home", 302)
 }
 
 func (c *LoginController) View() {
@@ -40,7 +41,7 @@ func (c *LoginController) View() {
 	defer session.SessionRelease(c.Ctx.Request.Context(), c.Ctx.ResponseWriter)
 	userID := session.Get(c.Ctx.Request.Context(), "UserID")
 	if userID != nil {
-		c.Redirect("/signup", 302) // TODO: change to home page
+		c.Redirect("/home", 302)
 	}
 
 	flash := beego.ReadFromRequest(&c.Controller)
