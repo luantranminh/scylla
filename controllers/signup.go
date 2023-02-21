@@ -29,10 +29,17 @@ func (c *SignupController) Signup() {
 
 	flash.Success("Wellcome to the town")
 	flash.Store(&c.Controller)
-	c.Redirect("/signup", 302)
+	c.Redirect("/home", 302)
 }
 
 func (c *SignupController) View() {
+	session := c.StartSession()
+	defer session.SessionRelease(c.Ctx.Request.Context(), c.Ctx.ResponseWriter)
+	userID := session.Get(c.Ctx.Request.Context(), "UserID")
+	if userID != nil {
+		c.Redirect("/home", 302)
+	}
+
 	flash := beego.ReadFromRequest(&c.Controller)
 
 	fmt.Println(flash)
