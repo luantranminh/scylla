@@ -1,0 +1,24 @@
+version: '3.1'
+services:
+    redis:
+        image: 'redis'
+        working_dir: /redis_app
+        ports:
+            - 6380:6379
+        volumes:
+            - redis:/redis_app
+
+    postgres:
+        image: 'postgres:12'
+        working_dir: /postgres_app
+        volumes:
+            - postgres:/postgres_app
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_DB=scylla
+        ports:
+            - '7004:5432'
+volumes:
+  redis:
+  postgres:
